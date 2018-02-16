@@ -1,0 +1,39 @@
+server:
+  applicationConnectors:
+  - type: http
+    port: 8180
+  adminConnectors:
+  - type: http
+    port: 8181
+logging:
+  level: WARN
+  loggers:
+    io.dropwizard:
+      level: WARN
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: log/dw.log
+          archivedLogFilenamePattern: log/dw.%d.log.gz
+          archivedFileCount: 5
+    org.eclipse:
+      level: OFF
+    org.hibernate:
+      level: WARN
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: log/hib.log
+          archivedLogFilenamePattern: log/hib.%d.log.gz
+          archivedFileCount: 5
+    org.springframework:
+      level: WARN
+      additive: true
+      appenders:
+        - type: file
+          currentLogFilename: log/spring.log
+          archivedLogFilenamePattern: log/spring.%d.log.gz
+          archivedFileCount: 5
+  appenders:
+    - type: console
+      threshold: WARN
